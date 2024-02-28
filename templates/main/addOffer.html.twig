@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form>
+        <fieldset>
+            <legend>Add new offer</legend>
+            <span>This form is only for <strong>organizations</strong>, if you're not one, click <a href="/">here</a></span><br><br>
+            <label for="organization">Organization: </label><br>
+            <select name="organization" id="organization">
+            <option value="0">--Select Org.</option>
+            {% for organization in organizationsArray %}
+                <option value={{organization.id}}>{{organization.name}}</option>
+            {% endfor %}
+            </select><br><br>
+            <label for="title">Title: </label><br>
+            <input type="text" name="title" required><br><br>
+            <label for="description">Description: </label><br>
+            <textarea name="description" id="descriptionTextArea" cols="30" rows="5"></textarea><br><br>
+            <label for="initDate">Init Date: </label><br>
+            <input type="date" name="initDate"><br><br>
+            <label for="finishDate">Finish Date: </label><br>
+            <input type="date"><br><br>
+            <label for="vacancy">Vacancies: </label><br>
+            <input type="number" min="1"><br><br>
+            <input type="checkbox">
+            <label for="checkbox">You accept all the terms and conditions.</label><br><br>
+            <button type="button">Add Offer</button>
+        </fieldset>
+    </form>
+{% endblock %}
