@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('addOffer') }}
+{% endblock %}
+
 {% block body %}
-    <form>
+    {# <form>
         <fieldset>
             <legend>Add new offer</legend>
-            <span>This form is only for <strong>organizations</strong>, if you're not one, click <a href="/">here</a></span><br><br>
+            <span class="warning">This form is only for <span style="font-weight: bold;">ORGANIZATIONS</span>, if you're not one, click <a href="/">here</a></span><br><br>
             <label for="organization">Organization: </label><br>
-            <select name="organization" id="organization">
+            <select name="organization" id="organization" required>
             <option value="0">--Select Org.</option>
             {% for organization in organizationsArray %}
                 <option value={{organization.id}}>{{organization.name}}</option>
@@ -15,16 +19,39 @@
             <label for="title">Title: </label><br>
             <input type="text" name="title" required><br><br>
             <label for="description">Description: </label><br>
-            <textarea name="description" id="descriptionTextArea" cols="30" rows="5"></textarea><br><br>
+            <textarea name="description" id="descriptionTextArea" cols="30" rows="5" required></textarea><br><br>
             <label for="initDate">Init Date: </label><br>
             <input type="date" name="initDate"><br><br>
             <label for="finishDate">Finish Date: </label><br>
             <input type="date"><br><br>
             <label for="vacancy">Vacancies: </label><br>
             <input type="number" min="1"><br><br>
-            <input type="checkbox">
+            <input type="checkbox" required>
             <label for="checkbox">You accept all the terms and conditions.</label><br><br>
             <button type="button">Add Offer</button>
+        </fieldset>
+    </form> #}
+
+    <form>
+        <fieldset>
+            <legend>Add Offer</legend>
+            <span class="warning">This form is only for <span style="font-weight: bold;">ORGANIZATIONS</span>, if you're not one, click <a href="/">here</a></span><br><br>
+            {{ form_start(form) }}
+
+                {{ form_row(form.title) }}<br><br>
+                {{ form_label(form.description) }}<br>
+                {{ form_widget(form.description) }}<br><br>
+                {{ form_row(form.init_date) }}<br><br>
+                {{ form_row(form.finish_date) }}<br><br>
+                {{ form_row(form.vacancy) }}<br><br>
+                {{ form_row(form.id_organization) }}<br><br>
+
+                {{ form_widget(form.termsAndConditions) }}
+                {{ form_label(form.termsAndConditions) }}<br><br>
+
+                {{ form_row(form.submit) }}
+
+            {{ form_end(form) }}
         </fieldset>
     </form>
 {% endblock %}

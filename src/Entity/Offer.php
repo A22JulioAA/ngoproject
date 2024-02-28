@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OfferRepository;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -31,7 +33,7 @@ class Offer
     #[ORM\Column(nullable: true)]
     private ?int $vacancy = null;
 
-    #[ORM\Column]
+    #[ORM\Column()]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -47,6 +49,8 @@ class Offer
     public function __construct()
     {
         $this->category = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
+        $this->lastUpdate = new DateTime();
     }
 
     public function getId(): ?int
