@@ -32,10 +32,29 @@ class MainController extends AbstractController
     }
 
     #[Route("/add-offer", name: "addOffer")]
-    public function add_offer(Request $request, OfferRepository $offerRepository): Response
+    public function add_offer(Request $request, OfferRepository $offerRepository, EntityManagerInterface $entityManager): Response
     {
 
+        // $offer = new Offer();
+        // $form = $this->createFormBuilder($offer)
+        // ->add("title")
+        // ->add("description")
+        // ->add("init_date")
+        // ->add("finish_date")
+        // ->add("vacancy")
+        // ->add("id_organization", EntityType::class, [
+        //             "class" => Organization::class,
+        //             "choice_label" => "name",
+        //             "label" => "Organization:",
+        //             "attr" => [
+        //                 "class" => "input"
+        //             ]
+        //         ])
+        // ->add("submit", SubmitType::class, ["label"=>"Save"])
+        // ->getForm();
+
         $offer = new Offer();
+
         $form = $this->createFormBuilder($offer)
             ->add("title", null, [
                 "label" => "Title: ",
@@ -87,13 +106,14 @@ class MainController extends AbstractController
 
         $form->handleRequest($request);
 
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $post = $form->getData();
-        //     // $offerRepository->add($post, true);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+            $entityManager->persist($post);
+            $entityManager->flush();
 
-        //     // $this->addFlash("success", "Offer has been added");
-        //     // return $this->redirectToRoute("homepage");
-        // }
+            $this->addFlash("success", "Offer has been added");
+            return $this->redirectToRoute("homepage");
+        }
 
         return $this->render("/main/addOffer.html.twig", [
             "title" => "Add Offer",
