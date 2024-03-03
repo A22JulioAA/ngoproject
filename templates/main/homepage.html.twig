@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% for type, messages in app.flashes() %}
+        <div class="alert">
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
     <div class="optionsBar">
         <input class="searchInput" type="search" placeholder="Search for offers"><i class="fas fa-search"></i></input><br>
         <button class="addButton"><a href="/add-offer">Add new offer</a></button>
@@ -19,7 +27,10 @@
                     <p class="date">Init date: {{offer.finishDate | date("Y-m-d") | default("Unavailable")}}</p>
                     <p>Vacancies: {{offer.vacancy ?? "Unavailable"}}</p>
                 </div>
-                <a href="/"><button class="applyButton">APPLY NOW</button></a>
+                <form action="{{ path('send_flash_apply') }}" method="post">
+                    <a href="/"><button class="applyButton">APPLY NOW</button></a>
+                </form>
+                
             </div>
         {% endfor %}
     </section>

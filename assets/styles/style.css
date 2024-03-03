@@ -211,3 +211,10 @@ a:active {
 .applyButton:hover {
   cursor: pointer;
 }
+
+.alert {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: lightgreen;
+}
