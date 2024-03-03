@@ -1,7 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <button><a href="/add-offer">Add new offer</a></button>
+    <div class="optionsBar">
+        <input class="searchInput" type="search" placeholder="Search for offers"><i class="fas fa-search"></i></input><br>
+        <button class="addButton"><a href="/add-offer">Add new offer</a></button>
+        <button class="addButton"><a href="/add-organization">Register your organization! It's free!</a></button>
+    </div>
+    
 
-    <section class="offers"></section<
+    <section class="offers">
+        {% for offer in arrayOffers %}
+            <div class="cardOffer">
+                <h2>{{offer.title}}</h2>
+                <div class="organizationName">{{offer.getIdOrganization().getName()}}|{{offer.createdAt|ago}}</div>
+                <p class="description">{{offer.description}}</p>
+                <div class="options">
+                    <p class="date">Init date: {{offer.initDate | date("Y-m-d") | default("Unavailable")}}</p>
+                    <p class="date">Init date: {{offer.finishDate | date("Y-m-d") | default("Unavailable")}}</p>
+                    <p>Vacancies: {{offer.vacancy ?? "Unavailable"}}</p>
+                </div>
+                <a href="/"><button class="applyButton">APPLY NOW</button></a>
+            </div>
+        {% endfor %}
+    </section>
+
 {% endblock %}

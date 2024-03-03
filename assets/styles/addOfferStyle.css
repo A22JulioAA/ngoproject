@@ -1,13 +1,21 @@
 @import url('style.css');
 
 form {
-  width: 75%;
-  margin: 2em auto;
+  width: 100%;
   background-color: white;
+  background-color: #bde0fe;
 }
 
 fieldset {
+  background-color: #bde0fe;
+  width: 75%;
+  margin: 1em auto;
   border-color: black;
+  border-radius: 1.2em;
+}
+
+fieldset legend {
+  font-size: 2em;
 }
 
 .input {
@@ -16,11 +24,17 @@ fieldset {
   border-radius: 0.3em;
 }
 
-.inputTime {
+.submitButton {
+  background-color: white;
+  border: 1px solid black;
+  font-size: 1.5em;
+  display: block;
+  margin: 0 auto;
+  padding: 0.5em 2em;
 }
 
 .warning {
-  color: rgb(247, 136, 136);
+  color: red;
 }
 
 button {

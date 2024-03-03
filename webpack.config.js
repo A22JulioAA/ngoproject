@@ -26,6 +26,16 @@ Encore
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
 
+  .copyFiles({
+    from: './node_modules/@fortawesome/fontawesome-free/webfonts',
+    to: 'fonts/[path][name].[ext]',
+  })
+
+  .copyFiles({
+    from: './assets/icons',
+    to: 'icons/[path][name].[ext]', // ajusta la ruta de destino según sea necesario
+  })
+
   // will require an extra script tag for runtime.js
   // but, you probably want this, unless you're building a single-page app
   .enableSingleRuntimeChunk()
@@ -55,7 +65,7 @@ Encore
   });
 
 // enables Sass/SCSS support
-//.enableSassLoader()
+// .enableSassLoader();
 
 // uncomment if you use TypeScript
 //.enableTypeScriptLoader()

@@ -40,7 +40,8 @@ p {
 /*STYLES*/
 
 * {
-  font-family: 'Roboto';
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
 }
 
 body {
@@ -48,22 +49,28 @@ body {
 }
 
 header {
-  background-color: lightgray;
+  background-color: #bde0fe;
   padding: 1.5em;
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .mainTitle {
   margin: 0;
 
-  font-size: 2em;
+  font-size: 4em;
   font-weight: bold;
+
+  font-family: 'Bangers', system-ui;
 }
 
 .navBar {
-  background-color: lightgray;
+  background-color: #8bc4f7;
+  padding: 1.5em;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .navBar ul {
@@ -77,9 +84,19 @@ header {
   padding: 0;
 }
 
-.navBar a:visited,
-.navBar a:link,
-.navBar a:active {
+.navBar ul li {
+  padding: 0.5em 1.5em;
+}
+
+.navBar ul li:hover {
+  background-color: #b8d9f7;
+  transition: 1s ease;
+  cursor: pointer;
+}
+
+a:visited,
+a:link,
+a:active {
   text-decoration: none;
   color: black;
 }
@@ -92,4 +109,105 @@ header {
 
   border-radius: 50%;
   object-fit: cover;
+}
+
+.offers {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.cardOffer {
+  border: 1px solid black;
+  background-color: #bde0fe;
+  margin-bottom: 1.5em;
+  padding: 0.4em;
+
+  border-radius: 1em;
+}
+
+.cardOffer h2 {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  font-size: 2em;
+
+  background-color: #8bc4f7;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+
+  border-bottom: 1px solid black;
+}
+
+.cardOffer .description {
+  width: 75%;
+  margin: 0.5em auto;
+  padding: 0;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+  gap: 1em;
+  border-top: 1px solid black;
+}
+
+.options p {
+  background-color: white;
+  border-radius: 1em;
+  text-align: center;
+  padding: 1.5em;
+}
+
+.optionsBar {
+  width: 100%;
+  text-align: center;
+}
+
+.searchInput {
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid black;
+
+  width: 50%;
+  margin: 1em auto;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.addButton {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  margin: 1em auto;
+  font-size: 1.1em;
+}
+
+.usernameSpan {
+  background-color: #8bc4f7;
+}
+
+.organizationName {
+  text-align: center;
+  border-bottom: 1px solid black;
+  font-weight: bold;
+}
+
+.applyButton {
+  width: 100%;
+  background-color: #51aeff;
+  border: none;
+  border-radius: 0.5em;
+  padding: 1em 2em;
+  font-weight: bold;
+}
+
+.applyButton:hover {
+  cursor: pointer;
 }

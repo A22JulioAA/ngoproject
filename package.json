@@ -4,6 +4,7 @@
         "@babel/preset-env": "^7.16.0",
         "@symfony/webpack-encore": "^4.0.0",
         "core-js": "^3.23.0",
+        "file-loader": "^6.0.0",
         "regenerator-runtime": "^0.13.9",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0",
@@ -18,7 +19,14 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@fontsource/bangers": "^5.0.18",
         "@fontsource/roboto-condensed": "^5.0.14",
-        "bootstrap": "^5.3.3"
+        "@fontsource/satisfy": "^5.0.18",
+        "@fortawesome/fontawesome": "^1.1.8",
+        "@fortawesome/fontawesome-free": "^6.5.1",
+        "@popperjs/core": "^2.11.8",
+        "bootstrap": "^5.3.3",
+        "google-fonts-webpack-plugin": "^0.4.4",
+        "jquery": "^3.7.1"
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OrganizationRepository;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -34,7 +36,7 @@ class Organization
     #[ORM\Column(length: 255)]
     private ?string $country = null;
 
-    #[ORM\Column]
+    #[ORM\Column()]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -46,6 +48,8 @@ class Organization
     public function __construct()
     {
         $this->offers = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
+        $this->lastUpdate = new DateTime();
     }
 
     public function getId(): ?int
