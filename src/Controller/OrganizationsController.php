@@ -32,29 +32,37 @@ class OrganizationsController extends AbstractController
         ]);
     }
 
-    #[Route("/organizations-panel-delete-offer", name:"delete-offer")]
-    public function deleteOffer(): Response{
+    #[Route("/organizations-panel-delete-offer/{id}", name:"delete-offer")]
+    public function deleteOffer(int $id, OfferRepository $offerRepository): Response{
+
+        $offer = $offerRepository->find($id);
+
+        if(!$offer){
+            $this->addFlash("unsuccessful", "Offer doesn't exist");
+            return $this->redirectToRoute('organizations-panel');
+        }
+        
         return $this->render("/manageOffersOrganizations/deleteOffer.html.twig", [
             "title"=>"Delete Offer"
         ]);
     }
 
-    #[Route("/organizations-panel-update-offer", name:"update-offer")]
-    public function updateOffer(): Response{
+    #[Route("/organizations-panel-update-offer/{id}", name:"update-offer")]
+    public function updateOffer(int $id): Response{
         return $this->render("/manageOffersOrganizations/updateOffer.html.twig", [
             "title"=>"Delete Offer"
         ]);
     }
 
-    #[Route("/organizations-panel-delete-organization", name:"delete-organization")]
-    public function deleteOrganization(): Response{
+    #[Route("/organizations-panel-delete-organization/{id}", name:"delete-organization")]
+    public function deleteOrganization(int $id): Response{
         return $this->render("/manageOffersOrganizations/deleteOrganization.html.twig", [
             "title"=>"Delete Offer"
         ]);
     }
 
-    #[Route("/organizations-panel-update-organization", name:"update-organization")]
-    public function updateOrganization(): Response{
+    #[Route("/organizations-panel-update-organization/{id}", name:"update-organization")]
+    public function updateOrganization(int $id): Response{
         return $this->render("/manageOffersOrganizations/updateOrganization.html.twig", [
             "title"=>"Delete Offer"
         ]);

@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% for type, messages in app.flashes() %}
+        <div class="alert-bad">
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        </div>
+    {% endfor %}
 <main>
     <div class="organizationSelectContainer">
         <h2>Delete</h2>

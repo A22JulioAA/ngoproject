@@ -220,6 +220,13 @@ a:active {
   background-color: lightgreen;
 }
 
+.alert-bad{
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: lightcoral;
+}
+
 .organizationSelectContainer{
   width: 100%;
   margin: 2em;

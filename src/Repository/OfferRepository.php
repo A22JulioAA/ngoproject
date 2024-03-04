@@ -43,4 +43,6 @@ class OfferRepository extends ServiceEntityRepository
            ->getQuery()
            ->getResult();
        }
+
+       
 }
