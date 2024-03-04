@@ -33,7 +33,7 @@ class OrganizationsController extends AbstractController
     }
 
     #[Route("/organizations-panel-delete-offer/{id}", name:"delete-offer")]
-    public function deleteOffer(int $id, OfferRepository $offerRepository): Response{
+    public function deleteOffer(int $id, OfferRepository $offerRepository, EntityManagerInterface $entityManager): Response{
 
         $offer = $offerRepository->find($id);
 
@@ -41,6 +41,11 @@ class OrganizationsController extends AbstractController
             $this->addFlash("unsuccessful", "Offer doesn't exist");
             return $this->redirectToRoute('organizations-panel');
         }
+
+        $entityManager->remove($offer);
+        $entityManager->flush();
+
+        // return $this->redirectToRoute("organizations-panel");
         
         return $this->render("/manageOffersOrganizations/deleteOffer.html.twig", [
             "title"=>"Delete Offer"
