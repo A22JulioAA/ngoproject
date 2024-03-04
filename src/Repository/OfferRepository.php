@@ -36,13 +36,11 @@ class OfferRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Offer
-    //    {
-    //        return $this->createQueryBuilder('o')
-    //            ->andWhere('o.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+       public function findAllByData(): ?Array
+       {
+           return $this->createQueryBuilder("offer")
+           ->orderBy("offer.createdAt", "DESC")
+           ->getQuery()
+           ->getResult();
+       }
 }

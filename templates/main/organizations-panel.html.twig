@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<main>
+    <div class="organizationSelectContainer">
+        <h2>Delete</h2>
+            <a href="/organizations-panel-delete-offer">➪ Offers</a><br>
+            <ul>
+            {% for offer in offers %}
+                <li><a href="/organizations-panel-delete-offer/{{offer.id}}">{{offer.title}}</a></li>
+            {% endfor %}
+            </ul>
+            <a href="/organizations-panel-delete-organization">➪ Organizations</a><br>
+            <ul>
+            {% for organization in organizations %}
+                <li><a href="/organizations-panel-delete-organization/{{organization.id}}">{{organization.name}}</a></li>
+            {% endfor %}
+            </ul>
+        <h2>Update</h2>
+            <a href="/organizations-panel-update-offer">➪ Offers</a><br>
+            <ul>
+            {% for offer in offers %}
+                <li><a href="/organizations-panel-update-offer/{{offer.id}}">{{offer.title}}</a></li>
+            {% endfor %}
+            </ul>
+            <a href="/organizations-panel-update-organization">➪ Organizations</a><br>
+            <ul>
+            {% for organization in organizations %}
+                <li><a href="/organizations-panel-update-organization/{{organization.id}}">{{organization.name}}</a></li>
+            {% endfor %}
+            </ul>
+            
+    </div>
+    <div class="image-repair">
+        <img src="./images/adminPage.jpg" alt="Image of workers" width=400>
+    </div>
+</main>
+{% endblock %}
+
+{# <form>
+        <label for="organization">Organization: </label>
+        <select name="organization" id="organization">
+            <option value="default">--Select one--</option>
+            {% for organization in organizations %}
+                <option value="{}"></option>
+            {% endfor %}
+        </select>  
+        <input type="submit" value="Update">
+        </form> #}

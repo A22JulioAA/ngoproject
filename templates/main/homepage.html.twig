@@ -23,8 +23,16 @@
                 <div class="organizationName">{{offer.getIdOrganization().getName()}}|{{offer.createdAt|ago}}</div>
                 <p class="description">{{offer.description}}</p>
                 <div class="options">
-                    <p class="date">Init date: {{offer.initDate | date("Y-m-d") | default("Unavailable")}}</p>
-                    <p class="date">Init date: {{offer.finishDate | date("Y-m-d") | default("Unavailable")}}</p>
+                    {% if offer.initDate is not null %}
+                        <p class="date">Init date: {{offer.initDate | date("Y-m-d")}}</p>
+                    {% else %}
+                        <p class="date">Init date: Unavailable</p>
+                    {% endif %}
+                    {% if offer.finishDate is not null %}
+                        <p class="date">Finish date: {{offer.finishDate | date("Y-m-d")}}</p>
+                    {% else %}
+                        <p class="date">Finish date: Unavailable</p>
+                    {% endif %}
                     <p>Vacancies: {{offer.vacancy ?? "Unavailable"}}</p>
                 </div>
                 <form action="{{ path('send_flash_apply') }}" method="post">

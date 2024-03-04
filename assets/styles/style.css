@@ -191,6 +191,7 @@ a:active {
 
 .usernameSpan {
   background-color: #8bc4f7;
+ 
 }
 
 .organizationName {
@@ -217,4 +218,37 @@ a:active {
   margin: 0 auto;
   text-align: center;
   background-color: lightgreen;
+}
+
+.organizationSelectContainer{
+  width: 100%;
+  margin: 2em;
+}
+
+.organizationSelectContainer h2{
+  font-size: 2em;
+}
+
+.organizationSelectContainer a:hover{
+  color: #8bc4f7;
+}
+
+.organizationSelectContainer ul li{
+  list-style-type: none;
+
+  border-bottom: 1px solid black;
+  border-bottom-right-radius: 0.5em;
+
+  width: 100%;
+
+  margin-bottom: 1em;
+}
+
+main{
+  display: flex;
+}
+
+.image-repair{
+  margin-top: 10em;
+  width: 50em;
 }

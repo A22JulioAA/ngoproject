@@ -22,7 +22,8 @@ class MainController extends AbstractController
     public function homepage(OfferRepository $offerRepository): Response
     {
 
-        $arrayOffers = $offerRepository->findAll();
+        
+        $arrayOffers = $offerRepository->findAllByData();
 
         return $this->render("main/homepage.html.twig", [
             "title" => "Homepage",
