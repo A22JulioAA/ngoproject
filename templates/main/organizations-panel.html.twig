@@ -2,7 +2,7 @@
 
 {% block body %}
 {% for type, messages in app.flashes() %}
-        <div class="alert-bad">
+        <div class="alert-{{type}}">
             {% for message in messages %}
                 {{message}}
             {% endfor %}
@@ -11,29 +11,29 @@
 <main>
     <div class="organizationSelectContainer">
         <h2>Update</h2>
-            <a href="/organizations-panel-update-offer">➪ Offers</a><br>
+            <span href="/organizations-panel-update-offer">➪ Offers</span><br>
             <ul>
             {% for offer in offers %}
                 <li><a href="/organizations-panel-update-offer/{{offer.id}}">{{offer.title}}</a></li>
             {% endfor %}
             </ul>
-            <a href="/organizations-panel-update-organization">➪ Organizations</a><br>
+            <span href="/organizations-panel-update-organization">➪ Organizations</span><br>
             <ul>
             {% for organization in organizations %}
                 <li><a href="/organizations-panel-update-organization/{{organization.id}}">{{organization.name}}</a></li>
             {% endfor %}
             </ul>
             <h2>Delete</h2>
-            <a href="/organizations-panel-delete-offer">➪ Offers</a><br>
+            <span href="/organizations-panel-delete-offer">➪ Offers</span><br>
             <ul>
             {% for offer in offers %}
-                <li><a href="/organizations-panel-delete-offer/{{offer.id}}">{{offer.title}}</a></li>
+                <li><a href="/organizations-panel-delete-offer/{{offer.id}}" class="delete-offer" data-id="{{ offer.id }}" data-name="{{ offer.title }}">{{offer.title}}</a></li>
             {% endfor %}
             </ul>
-            <a href="/organizations-panel-delete-organization">➪ Organizations</a><br>
+            <span href="/organizations-panel-delete-organization">➪ Organizations</span><br>
             <ul>
             {% for organization in organizations %}
-                <li><a href="/organizations-panel-delete-organization/{{organization.id}}">{{organization.name}}</a></li>
+                <li><a href="/organizations-panel-delete-organization/{{organization.id}}" class="delete-organization" data-id="{{ organization.id }}" data-name="{{ organization.name }}">{{organization.name}}</a></li>
             {% endfor %}
             </ul>
             
@@ -42,6 +42,43 @@
         <img src="./images/adminPage.jpg" alt="Image of workers" width=400>
     </div>
 </main>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteLinks = document.querySelectorAll('.delete-organization');
+
+        deleteLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const organizationId = this.getAttribute('data-id');
+                const organizationName = this.getAttribute('data-name');
+
+                if (confirm(`Are you sure you want to delete '${organizationName}'? This decision is final and may not be recovered.`)) {
+                    window.location.href = `/organizations-panel-delete-organization/${organizationId}`;
+                }
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteLinks = document.querySelectorAll('.delete-offer');
+
+        deleteLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const offerId = this.getAttribute('data-id');
+                const offerTitle = this.getAttribute('data-name');
+
+                if (confirm(`Are you sure you want to delete '${offerTitle}'? This decision is final and may not be recovered.`)) {
+                    window.location.href = `/organizations-panel-delete-offer/${offerId}`;
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
 
 {# <form>

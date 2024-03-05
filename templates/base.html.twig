@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}NGOpportunity Hub | {{ title }}{% endblock %}</title>
         {% block favicon %}
-            <link rel="icon" type="image/svg+xml" href="{{ asset('./icons/hands.svg') }}" />
+            <link rel="icon" type="image/svg+xml" href="{{ asset('./images/icon.svg') }}" />
         {% endblock %}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -17,18 +17,18 @@
     <body>
 
         <header>
-            <h1 class="mainTitle"><a href="/">NGOPPORTUNITY HUB</a></h1>
+            <h1 class="mainTitle"><a href="/"><span>NGO</span>portunity Hub</a></h1>
             
-            <div>
-                <img src="" alt="profileImage" class="profileImage"/>
-                <span class="usernameSpan">Username</span>
+            <div class="userData">
+                <img src="./images/profileImage.jpeg" alt="profile image" class="profileImage"/>
+                <span class="usernameSpan">Julio Aller Acuña</span>
             </div>
         </header>
         <nav class="navBar">
             <ul>
-                <li><a href="#">My Offers</a></li>
-                <li><a href="#">My Profile</a></li>
-                <li><a href="/organizations-panel">Organizations</a></li>
+                <a href="/my-offers"><li>My Offers</li></a>
+                <a href="/my-profile"><li>My Profile</li></a>
+                <a href="/organizations-panel"><li>Organizations</li></a>
             </ul>
         </nav>
 

@@ -22,7 +22,7 @@ class MainController extends AbstractController
     public function homepage(OfferRepository $offerRepository): Response
     {
 
-        
+
         $arrayOffers = $offerRepository->findAllByData();
 
         return $this->render("main/homepage.html.twig", [
@@ -182,5 +182,21 @@ class MainController extends AbstractController
         $this->addFlash("success", "Your request has been sent successfully!");
 
         return $this->redirectToRoute("homepage");
+    }
+
+    #[Route("/my-offers", name: "my-offers")]
+    public function myOffers(): Response
+    {
+        return $this->render("/main/myOffers.html.twig", [
+            "title" => "My Offers"
+        ]);
+    }
+
+    #[Route("/my-profile", name: "my-profile")]
+    public function myProfile(): Response
+    {
+        return $this->render("/main/myProfile.html.twig", [
+            "title" => "My Profile"
+        ]);
     }
 }

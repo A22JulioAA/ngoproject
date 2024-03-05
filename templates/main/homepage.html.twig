@@ -2,7 +2,7 @@
 
 {% block body %}
     {% for type, messages in app.flashes() %}
-        <div class="alert">
+        <div class="alert-{{type}}">
             {% for message in messages %}
                 {{message}}
             {% endfor %}
