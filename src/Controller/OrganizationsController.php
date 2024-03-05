@@ -45,31 +45,163 @@ class OrganizationsController extends AbstractController
         $entityManager->remove($offer);
         $entityManager->flush();
 
-        // return $this->redirectToRoute("organizations-panel");
-        
-        return $this->render("/manageOffersOrganizations/deleteOffer.html.twig", [
-            "title"=>"Delete Offer"
-        ]);
+        return $this->redirectToRoute("organizations-panel");
     }
 
     #[Route("/organizations-panel-update-offer/{id}", name:"update-offer")]
-    public function updateOffer(int $id): Response{
-        return $this->render("/manageOffersOrganizations/updateOffer.html.twig", [
-            "title"=>"Delete Offer"
-        ]);
+    public function updateOffer(int $id, Request $request, EntityManagerInterface $entityManager, OfferRepository $offerRepository): Response{
+
+        $offer = $offerRepository->find($id);
+
+        $form = $this->createFormBuilder($offer)
+        ->add("title", null, [
+            "label" => "Title: ",
+            "attr" => [
+                "class" => "input"
+            ]
+        ])
+        ->add("description", null, [
+            "label" => "Description: ",
+            "attr" => [
+                "rows" => 10,
+                "cols" => 40,
+                "class" => "input"
+            ]
+        ])
+        ->add("init_date", null, [
+            "label" => "Init Date:",
+            "attr" => [
+                "class" => "inputTime"
+            ]
+        ])
+        ->add("finish_date", null, [
+            "label" => "Finish Date:",
+            "attr" => [
+                "class" => "inputTime"
+            ]
+        ])
+        ->add("vacancy", null, [
+            "label" => "Vacancies:",
+            "attr" => [
+                "class" => "input"
+            ]
+        ])
+        ->add("id_organization", EntityType::class, [
+            "class" => Organization::class,
+            "choice_label" => "name",
+            "label" => "Organization:",
+            "attr" => [
+                "class" => "input"
+            ]
+        ])
+        ->add("termsAndConditions", CheckboxType::class, [
+            "mapped" => false,
+            "label" => "I have read and accept all terms and conditions.",
+            "required" => true
+        ])
+        ->add("submit", SubmitType::class, ["label" => "Add", "attr" => [
+            "class" => "submitButton"
+        ]])
+        ->getForm();
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $post = $form->getData();
+            $entityManager->persist($post);
+            $entityManager->flush();
+
+            $this->addFlash("success", "Your offer has been updated");
+
+            return $this->redirectToRoute("homepage");
+        }
+       return $this->render("/manageOffersOrganizations/updateOffer.html.twig", [
+        "title"=>"Update Offer",
+        "form"=>$form
+       ]);
     }
 
     #[Route("/organizations-panel-delete-organization/{id}", name:"delete-organization")]
-    public function deleteOrganization(int $id): Response{
-        return $this->render("/manageOffersOrganizations/deleteOrganization.html.twig", [
-            "title"=>"Delete Offer"
-        ]);
+    public function deleteOrganization(int $id, EntityManagerInterface $entityManager, OrganizationRepository $organizationRepository): Response{
+        $organization = $organizationRepository->find($id);
+
+        if(!$organization){
+            $this->addFlash("unsuccessful", "Organization doesn't exist");
+            return $this->redirectToRoute('organizations-panel');
+        }
+
+        $entityManager->remove($organization);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("organizations-panel");
     }
 
     #[Route("/organizations-panel-update-organization/{id}", name:"update-organization")]
-    public function updateOrganization(int $id): Response{
+    public function updateOrganization(Request $request, int $id, EntityManagerInterface $entityManager, OrganizationRepository $organizationRepository): Response{
+        $organization = $organizationRepository->find($id);
+
+        $form = $this->createFormBuilder($organization)
+            ->add("name", null, [
+                "label" => "Name: ",
+                "attr" => [
+                    "class" => "input"
+                ]
+            ])
+            ->add("description", null, [
+                "label" => "Description: ",
+                "attr" => [
+                    "rows" => 10,
+                    "cols" => 40,
+                    "class" => "input"
+                ]
+            ])
+            ->add("email", null, [
+                "label" => "Email: ",
+                "attr" => [
+                    "class" => "input"
+                ]
+            ])
+            ->add("phone", null, [
+                "label" => "Phone:",
+                "attr" => [
+                    "class" => "input"
+                ]
+            ])
+            ->add("address", null, [
+                "label" => "Address:",
+                "attr" => [
+                    "class" => "input"
+                ]
+            ])
+            ->add("country", null, [
+                "label" => "Country:",
+                "attr" => [
+                    "class" => "input"
+                ]
+            ])
+            ->add("termsAndConditions", CheckboxType::class, [
+                "mapped" => false,
+                "label" => "I have read and accept all terms and conditions.",
+                "required" => true
+            ])
+            ->add("submit", SubmitType::class, ["label" => "Add", "attr" => [
+                "class" => "submitButton"
+            ]])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+            $entityManager->persist($post);
+            $entityManager->flush();
+
+            $this->addFlash("success", "Organization has been updated.");
+            return $this->redirectToRoute("homepage");
+        }
         return $this->render("/manageOffersOrganizations/updateOrganization.html.twig", [
-            "title"=>"Delete Offer"
+            "title"=>"Delete Offer",
+            "form"=>$form
         ]);
     }
 }

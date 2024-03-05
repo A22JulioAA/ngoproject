@@ -1,1 +1,29 @@
 {% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('addOffer') }}
+{% endblock %}
+
+{% block body %}
+        <fieldset>
+            <legend>Add Offer</legend>
+            <span class="warning">This form is only for <span style="font-weight: bold;">ORGANIZATIONS</span>, if you're not one, click <a href="/">here</a></span><br><br>
+            {{ form_start(form) }}
+
+                {{ form_row(form.title) }}<br><br>
+                {{ form_label(form.description) }}<br>
+                {{ form_widget(form.description) }}<br><br>
+                {{ form_row(form.init_date) }}<br><br>
+                {{ form_row(form.finish_date) }}<br><br>
+                {{ form_row(form.vacancy) }}<br><br>
+                {{ form_row(form.id_organization) }}<br><br>
+
+                {{ form_widget(form.termsAndConditions) }}
+                {{ form_label(form.termsAndConditions) }}<br><br>
+
+                {{ form_row(form.submit) }}
+
+            {{ form_end(form) }}
+        </fieldset>
+
+{% endblock %}

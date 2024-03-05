@@ -45,4 +45,13 @@ class OrganizationRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function add(Organization $organization, bool $flush = false): void
+        {
+            $entityManager = $this->getEntityManager();
+            $entityManager->persist($organization);
+            if ($flush) {
+                $entityManager->flush();
+            }
+        }
 }

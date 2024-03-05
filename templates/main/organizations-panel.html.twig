@@ -10,19 +10,6 @@
     {% endfor %}
 <main>
     <div class="organizationSelectContainer">
-        <h2>Delete</h2>
-            <a href="/organizations-panel-delete-offer">➪ Offers</a><br>
-            <ul>
-            {% for offer in offers %}
-                <li><a href="/organizations-panel-delete-offer/{{offer.id}}">{{offer.title}}</a></li>
-            {% endfor %}
-            </ul>
-            <a href="/organizations-panel-delete-organization">➪ Organizations</a><br>
-            <ul>
-            {% for organization in organizations %}
-                <li><a href="/organizations-panel-delete-organization/{{organization.id}}">{{organization.name}}</a></li>
-            {% endfor %}
-            </ul>
         <h2>Update</h2>
             <a href="/organizations-panel-update-offer">➪ Offers</a><br>
             <ul>
@@ -34,6 +21,19 @@
             <ul>
             {% for organization in organizations %}
                 <li><a href="/organizations-panel-update-organization/{{organization.id}}">{{organization.name}}</a></li>
+            {% endfor %}
+            </ul>
+            <h2>Delete</h2>
+            <a href="/organizations-panel-delete-offer">➪ Offers</a><br>
+            <ul>
+            {% for offer in offers %}
+                <li><a href="/organizations-panel-delete-offer/{{offer.id}}">{{offer.title}}</a></li>
+            {% endfor %}
+            </ul>
+            <a href="/organizations-panel-delete-organization">➪ Organizations</a><br>
+            <ul>
+            {% for organization in organizations %}
+                <li><a href="/organizations-panel-delete-organization/{{organization.id}}">{{organization.name}}</a></li>
             {% endfor %}
             </ul>
             

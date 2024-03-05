@@ -44,5 +44,12 @@ class OfferRepository extends ServiceEntityRepository
            ->getResult();
        }
 
-       
+       public function add(Offer $offer, bool $flush = false): void
+        {
+            $entityManager = $this->getEntityManager();
+            $entityManager->persist($offer);
+            if ($flush) {
+                $entityManager->flush();
+            }
+        }
 }
