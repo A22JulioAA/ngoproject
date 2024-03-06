@@ -36,6 +36,8 @@ class OfferRepository extends ServiceEntityRepository
     //        ;
     //    }
 
+    
+        // I create a function to search data in database by de field "createdAt".
        public function findAllByData(): ?Array
        {
            return $this->createQueryBuilder("offer")
@@ -44,12 +46,4 @@ class OfferRepository extends ServiceEntityRepository
            ->getResult();
        }
 
-       public function add(Offer $offer, bool $flush = false): void
-        {
-            $entityManager = $this->getEntityManager();
-            $entityManager->persist($offer);
-            if ($flush) {
-                $entityManager->flush();
-            }
-        }
 }

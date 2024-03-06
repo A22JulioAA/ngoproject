@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
-use App\Entity\Offer;
 use App\Entity\Organization;
 use App\Repository\OfferRepository;
 use App\Repository\OrganizationRepository;
@@ -13,7 +11,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,6 +20,8 @@ class OrganizationsController extends AbstractController
     #[Route("/organizations-panel", name: "organizations-panel")]
     public function organizationsPanel(OfferRepository $offerRepository, OrganizationRepository $organizationRepository): Response
     {
+
+        // This show a twig template with all the offers and organizations queried the database.
 
         $arrayOffers = $offerRepository->findAll();
         $arrayOrganizations = $organizationRepository->findAll();
@@ -37,6 +36,8 @@ class OrganizationsController extends AbstractController
     #[Route("/organizations-panel-delete-offer/{id}", name: "delete-offer")]
     public function deleteOffer(int $id, OfferRepository $offerRepository, EntityManagerInterface $entityManager): Response
     {
+
+        // I take the id in the URL and find the offer with it in the database. Then I removed and send a flash messagge.
 
         $offer = $offerRepository->find($id);
 
@@ -60,6 +61,8 @@ class OrganizationsController extends AbstractController
     #[Route("/organizations-panel-update-offer/{id}", name: "update-offer")]
     public function updateOffer(int $id, Request $request, EntityManagerInterface $entityManager, OfferRepository $offerRepository): Response
     {
+
+        // I take the id in the URL and find the offer with it in the database. Then I load a form to update it.
 
         $offer = $offerRepository->find($id);
 
@@ -134,6 +137,9 @@ class OrganizationsController extends AbstractController
     #[Route("/organizations-panel-delete-organization/{id}", name: "delete-organization")]
     public function deleteOrganization(int $id, EntityManagerInterface $entityManager, OrganizationRepository $organizationRepository): Response
     {
+
+        // I take the id in the URL and find the organization with it in the database. Then I removed and send a flash messagge.
+
         $organization = $organizationRepository->find($id);
 
         if (!$organization) {
@@ -155,6 +161,9 @@ class OrganizationsController extends AbstractController
     #[Route("/organizations-panel-update-organization/{id}", name: "update-organization")]
     public function updateOrganization(Request $request, int $id, EntityManagerInterface $entityManager, OrganizationRepository $organizationRepository): Response
     {
+
+        // I take the id in the URL and find the organization with it in the database. Then I load a form to update it.
+
         $organization = $organizationRepository->find($id);
 
         $form = $this->createFormBuilder($organization)

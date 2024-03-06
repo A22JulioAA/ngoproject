@@ -6,9 +6,10 @@
 
 {% block body %}
         <fieldset>
-            <legend>Add Organization</legend>
-            {# <span class="warning">This form is only for <span style="font-weight: bold;">ORGANIZATIONS</span>, if you're not one, click <a href="/">here</a></span><br><br> #}
+            <legend>Update Organization</legend>
             {{ form_start(form) }}
+
+                {# Formated form #}
 
                 {{ form_row(form.name) }}<br><br>
                 {{ form_label(form.description) }}<br>

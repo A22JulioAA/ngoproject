@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
 use App\Entity\Offer;
 use App\Entity\Organization;
 use App\Repository\OfferRepository;
@@ -21,7 +20,6 @@ class MainController extends AbstractController
     #[Route("/", name: "homepage")]
     public function homepage(OfferRepository $offerRepository): Response
     {
-
 
         $arrayOffers = $offerRepository->findAllByData();
 
@@ -183,6 +181,8 @@ class MainController extends AbstractController
 
         return $this->redirectToRoute("homepage");
     }
+
+    // This routes are not implemented.
 
     #[Route("/my-offers", name: "my-offers")]
     public function myOffers(): Response

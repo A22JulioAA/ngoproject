@@ -6,9 +6,12 @@
 
 {% block body %}
         <fieldset>
-            <legend>Add Offer</legend>
+            <legend>Update Offer</legend>
+            {# This is a messagge to warn users that they must be and organization to create an offer.#}
             <span class="warning">This form is only for <span style="font-weight: bold;">ORGANIZATIONS</span>, if you're not one, click <a href="/">here</a></span><br><br>
             {{ form_start(form) }}
+
+                {# Formated form #}
 
                 {{ form_row(form.title) }}<br><br>
                 {{ form_label(form.description) }}<br>
